@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Симулятор ГЖД</title>
+    <style>
+    <style>
+    <body style="background-image: url('https://gudok.ru/upload/iblock/248/73usz2bcas8lpu7819oryatpv3t04xld/foto-poezd-nado-na-yug.jpg'); background-size: cover;">
+
+
+
+
+    
+        body {
+            background-image: url('https://avatars.mds.yandex.net/i?id=2a00000196c9676138573835f33b8447c0f8-1041949-fast-images&n=13');
+            background-size: cover; /* Растягивает изображение на весь экран */
+            background-repeat: no-repeat; /* Отключает повторение изображения */
+            background-attachment: fixed; /* Фиксирует фон при прокрутке */
+            background-position: center; /* Центрирует изображение */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        
+        /* Дополнительные стили для контента, чтобы текст был читаемым */
+        .content {
+            background-color: rgba(255, 255, 255, 0.7); /* Полупрозрачный белый фон */
+            padding: 20px;
+            margin: 50px;
+            border-radius: 10px;
+        }
+  
+    
+    }
+
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .copy-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background-color: #27ae60;
+        }
+        
+        .copy-btn:active {
+            background-color: #219653;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .nav-button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        .nav-button:hover {
+            background-color: #45a049;
+        }
+        
+        .page {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .button-active {
+            background-color: #3d8b40;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать!</h1>
+    
+    <div class="nav-buttons">
+        <button class="nav-button button-active" onclick="showPage('home')">Главная</button>
+        <button class="nav-button" onclick="showPage('page1')">Соц.сети</button>
+        <button class="nav-button" onclick="showPage('page2')">Обратная связь</button>
+    </div>
+
+    <div id="home" class="page active">
+        <h2>Главная страница</h2>
+        <p>Привет!<br>2D Симулятор Горьковской железной дороги-<br>
+Реалистичное управление поездами в духе легендарной магистрали<br><br><br>
+
+Об игре <br>
+Погрузитесь в атмосферу железнодорожного транспорта на одной из самых протяженных и живописных магистралей России! 2D-симулятор Горьковской железной дороги предлагает уникальный опыт управления пассажирскими составами с детализированной физикой, точным расписанием и реальными маршрутами.  
+
+Отправляйтесь в путь от Нижнего Новгорода, соблюдая график движения, сигналы светофоров и правила безопасности. В вашем распоряжении —от новых "Ласточка" до "ЭД4М"</p>
+    </div>
+
+    <div id="page1" class="page">
+        <h2>Первая страница</h2>
+        <p>Мои соц.сети:</p>
+        <ul>
+            <li><a href = "https://novmetro.t.me" class = "custom-link">Тееграмм канал:@novmetro</a></li>
+            <li><div class="link-text">
+        <a href="https://www.tiktok.com/@engometri?_t=ZS-8wMCtaYzKU6&_r=1" class="custom-link">ТикТок</a> 
+       
+    </div></li>
+            
+        </ul>
+    </div>
+
+    <div id="page2" class="page">
+        <h2>Обратная связь</h2>
+        <p>Email:kitfeil.tex.poderzka@gmail.com</p>
+           <div class="tooltip">
+        <button class="copy-btn" onclick="copyEmail()">Скопировать<br></button>
+        <span class="tooltiptext"></span>
+    </div>
+
+    <script>
+        function copyEmail() {
+            const email = "kitfeil.tex.poderzka@gmail.com";
+            
+            // Создаем временный textarea элемент
+            const textarea = document.createElement("textarea");
+            textarea.value = email;
+            document.body.appendChild(textarea);
+            
+            // Выделяем и копируем текст
+            textarea.select();
+            document.execCommand("copy");
+            
+            // Удаляем временный элемент
+            document.body.removeChild(textarea);
+            
+            // Показываем уведомление
+            alert("Готово" );
+            
+            // Альтернатива alert - можно изменить текст тултипа
+            // const tooltip = document.querySelector(".tooltiptext");
+            // tooltip.textContent = "Скопировано!";
+            // setTimeout(() => {
+            //     tooltip.textContent = "Нажмите чтобы скопировать";
+            // }, 2000);
+        }
+    </script>
+        
+        
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Скрыть все страницы
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Убрать активный стиль у всех кнопок
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.classList.remove('button-active');
+            });
+
+            // Показать выбранную страницу
+            document.getElementById(pageId).classList.add('active');
+
+            // Добавить активный стиль к выбранной кнопке
+            event.target.classList.add('button-active');
+        }
+    </script>
+    <style>
+    body {
+        background-image: url('image.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        margin: 0; /* убирает отступы по умолчанию */
+        height: 100vh; /* на всю высоту экрана */
+    }
+</style>
+</body>
+</html>
+   
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: white; /* Начальный фон */
+            transition: background-color 0.5s ease; /* Плавное изменение */
+            min-height: 200vh; /* Делаем страницу длинной */
+        }
+        
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="content">
+
+    </div>
+
+    <script>
+        const body = document.getElementById("body");
+        
+        window.addEventListener("scroll", function() {
+            // Вычисляем процент прокрутки (от 0 до 1)
+            const scrollPercentage = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            
+            // Интерполируем цвет от белого (255,255,255) до серого (128,128,128)
+            const grayValue = 255 - (scrollPercentage * 127); // 255 → 128
+            const newColor = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
+            
+            body.style.backgroundColor = newColor;
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Прокрутите вниз</h1>
+    </section>
+    
+    <section>
+        <div data-aos="fade-up">
+            <h2>Скоро тут появится возможность протестировать игру.</h2>
+            
+        </div>
+    </section>
+    
+    <section>
+        <div data-aos="fade-left" data-aos-delay="300">
+            <h2>Жди.</h2>
+            <p></p>
+        </div>
+    </section>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: false
+        });
+    </script>
+</body>
+</html>
